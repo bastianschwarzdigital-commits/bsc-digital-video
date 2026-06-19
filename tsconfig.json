@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "esnext"],
+    "module": "commonjs",
+    "target": "es6",
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "moduleResolution": "node"
+  }
+}

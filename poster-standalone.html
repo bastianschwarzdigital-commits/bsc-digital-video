@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #1a1a2e; }
+  svg { display: block; }
+</style>
+</head>
+<body>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Backgrounds -->
+    <radialGradient id="g1" cx="50%" cy="45%" r="55%">
+      <stop offset="0%"   stop-color="#2878cc" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="20%" cy="80%" r="40%">
+      <stop offset="0%"   stop-color="#3a92e9" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g3" cx="82%" cy="75%" r="35%">
+      <stop offset="0%"   stop-color="#3a92e9" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Text gradient overlay -->
+    <linearGradient id="textbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#1a1a2e" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0.85"/>
+    </linearGradient>
+    <!-- Play button glow -->
+    <radialGradient id="playGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#3a92e9" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3a92e9" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Arrow marker -->
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#3a92e9"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#1a1a2e"/>
+  <rect width="1920" height="1080" fill="url(#g1)"/>
+  <rect width="1920" height="1080" fill="url(#g2)"/>
+  <rect width="1920" height="1080" fill="url(#g3)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="640" y1="0" x2="640" y2="1080" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.03"/>
+  <line x1="1280" y1="0" x2="1280" y2="1080" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.03"/>
+  <line x1="0" y1="540" x2="1920" y2="540" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.03"/>
+
+  <!-- Ground line -->
+  <line x1="80" y1="778" x2="1840" y2="778" stroke="#252540" stroke-width="3"/>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCENE LEFT: Mensch tippt → Roboter (Automation)   -->
+  <!-- ═══════════════════════════════════════════════════ -->
+
+  <!-- Desk -->
+  <rect x="155" y="720" width="195" height="16" rx="6" fill="#252540" stroke="#3a92e944" stroke-width="1.5"/>
+  <rect x="172" y="736" width="10" height="42" rx="4" fill="#252540"/>
+  <rect x="328" y="736" width="10" height="42" rx="4" fill="#252540"/>
+
+  <!-- Monitor -->
+  <rect x="215" y="630" width="100" height="72" rx="8" fill="#252540" stroke="#3a92e966" stroke-width="2"/>
+  <rect x="224" y="640" width="70" height="9" rx="3" fill="#3a92e944"/>
+  <rect x="224" y="658" width="70" height="9" rx="3" fill="#3a92e944"/>
+  <rect x="224" y="676" width="70" height="9" rx="3" fill="#3a92e944"/>
+  <!-- Monitor stand -->
+  <rect x="258" y="702" width="6" height="18" rx="2" fill="#252540"/>
+
+  <!-- Human figure (typing) at x=255, y=778 scale=1.5 -->
+  <!-- scale=1.5: head r=18, body 60px, arms 42px, legs 45px -->
+  <!-- Head -->
+  <circle cx="255" cy="650" r="18" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <!-- Body -->
+  <line x1="255" y1="668" x2="255" y2="728" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <!-- Arms (left -25°, right -15°) -->
+  <!-- armLeftAngle=-25: dx=sin(-25°)*42=-17.7, dy=cos(25°)*42=-38.1 → but arms go UP from shoulder -->
+  <!-- shoulder is 18px below head center = y=668 -->
+  <!-- left arm: angle -25° from down = going up-left -->
+  <!-- Interpreting: angle from vertical DOWN, negative = left direction -->
+  <!-- armLeft=-25: arm goes to upper-left -->
+  <line x1="255" y1="683" x2="220" y2="655" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <!-- armRight=-15 -->
+  <line x1="255" y1="683" x2="287" y2="657" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <!-- Legs (hip at y=728) legLeft=-14, legRight=14 -->
+  <line x1="255" y1="728" x2="234" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="255" y1="728" x2="276" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Task box flying -->
+  <rect x="306" y="648" width="58" height="36" rx="7" fill="none" stroke="#3a92e9" stroke-width="2" opacity="0.9"/>
+  <text x="335" y="671" text-anchor="middle" fill="#3a92e9" font-size="13" font-family="system-ui" font-weight="600">Task</text>
+
+  <!-- Arrow human→robot -->
+  <path d="M 330 690 Q 385 645 420 688" fill="none" stroke="#3a92e9" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#arrow)" opacity="0.7"/>
+
+  <!-- Robot figure at x=430, y=778, scale=1.3 color=primary -->
+  <!-- scale=1.3: head r=15.6≈16, body 52px, arms 36px, legs 39px -->
+  <circle cx="430" cy="658" r="16" fill="none" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <!-- Robot antenna -->
+  <line x1="430" y1="642" x2="430" y2="632" stroke="#3a92e9" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="430" cy="630" r="3" fill="#3a92e9"/>
+  <!-- Robot face lines -->
+  <line x1="422" y1="654" x2="438" y2="654" stroke="#3a92e9" stroke-width="1.5" opacity="0.6"/>
+  <!-- Body -->
+  <line x1="430" y1="674" x2="430" y2="726" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <!-- Arms open (-45° left, +45° right) -->
+  <line x1="430" y1="686" x2="398" y2="654" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="430" y1="686" x2="462" y2="654" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <!-- Legs -->
+  <line x1="430" y1="726" x2="406" y2="778" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="430" y1="726" x2="454" y2="778" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Second Robot at x=510 -->
+  <circle cx="510" cy="658" r="16" fill="none" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="510" y1="642" x2="510" y2="632" stroke="#3a92e9" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="510" cy="630" r="3" fill="#3a92e9"/>
+  <line x1="510" y1="674" x2="510" y2="726" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="510" y1="686" x2="480" y2="660" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="510" y1="686" x2="540" y2="660" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="510" y1="726" x2="487" y2="778" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="510" y1="726" x2="533" y2="778" stroke="#3a92e9" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Label bottom-left -->
+  <text x="320" y="840" text-anchor="middle" fill="#3a92e9" font-size="14" font-family="system-ui" font-weight="600" letter-spacing="2" opacity="0.8">AUTOMATISIERUNG</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SCENE CENTER: Team + KI-Hub (Einführung)              -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <!-- Gear at center x=960, y=578 -->
+  <g transform="translate(960, 578)">
+    <!-- Gear teeth (8 teeth) -->
+    <polygon points="
+      -22,-49 -28,-56 -28,-66 -22,-73
+       22,-73  28,-66  28,-56  22,-49
+       49,-22  56,-28  66,-28  73,-22
+       73, 22  66, 28  56, 28  49, 22
+       22, 49  28, 56  28, 66  22, 73
+      -22, 73 -28, 66 -28, 56 -22, 49
+      -49, 22 -56, 28 -66, 28 -73, 22
+      -73,-22 -66,-28 -56,-28 -49,-22
+    " fill="none" stroke="#3a92e9" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Inner circle -->
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#3a92e9" stroke-width="2.5"/>
+    <!-- KI text -->
+    <text x="0" y="8" text-anchor="middle" fill="#3a92e9" font-size="22" font-weight="700" font-family="system-ui">KI</text>
+  </g>
+
+  <!-- Connection lines from figures to gear -->
+  <line x1="720" y1="658" x2="910" y2="578" stroke="#3a92e9" stroke-width="1.8" stroke-dasharray="8 5" opacity="0.6"/>
+  <line x1="960" y1="700" x2="960" y2="655" stroke="#3a92e9" stroke-width="1.8" stroke-dasharray="8 5" opacity="0.6"/>
+  <line x1="1200" y1="658" x2="1010" y2="578" stroke="#3a92e9" stroke-width="1.8" stroke-dasharray="8 5" opacity="0.6"/>
+
+  <!-- Glow circles around each team figure -->
+  <circle cx="720" cy="680" r="55" fill="#3a92e9" fill-opacity="0.06"/>
+  <circle cx="960" cy="720" r="55" fill="#3a92e9" fill-opacity="0.06"/>
+  <circle cx="1200" cy="680" r="55" fill="#3a92e9" fill-opacity="0.06"/>
+
+  <!-- Figure LEFT at x=720, y=778, scale=1.3 -->
+  <circle cx="720" cy="658" r="16" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="720" y1="674" x2="720" y2="726" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <!-- arm left at -60°, right at -40° (gesturing toward center) -->
+  <line x1="720" y1="686" x2="692" y2="658" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="720" y1="686" x2="750" y2="660" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="720" y1="726" x2="697" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="720" y1="726" x2="743" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Figure CENTER at x=960, y=778, scale=1.3 -->
+  <circle cx="960" cy="700" r="16" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="960" y1="716" x2="960" y2="758" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="960" y1="728" x2="932" y2="706" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="960" y1="728" x2="988" y2="706" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="960" y1="758" x2="940" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="960" y1="758" x2="980" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Figure RIGHT at x=1200, y=778, scale=1.3 -->
+  <circle cx="1200" cy="658" r="16" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="1200" y1="674" x2="1200" y2="726" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="1200" y1="686" x2="1170" y2="660" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="1200" y1="686" x2="1228" y2="658" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="1200" y1="726" x2="1177" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="1200" y1="726" x2="1223" y2="778" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Label center bottom -->
+  <text x="960" y="840" text-anchor="middle" fill="#3a92e9" font-size="14" font-family="system-ui" font-weight="600" letter-spacing="2" opacity="0.8">KI-EINFÜHRUNG</text>
+
+  <!-- ═════════════════════════════════════════════════ -->
+  <!-- SCENE RIGHT: Workshop (Lehrer + Schüler)         -->
+  <!-- ═════════════════════════════════════════════════ -->
+
+  <!-- Whiteboard -->
+  <rect x="1420" y="468" width="300" height="220" rx="10" fill="#252540" stroke="#3a92e977" stroke-width="2.5"/>
+  <rect x="1420" y="468" width="300" height="20" rx="6" fill="#3a92e955"/>
+  <!-- Board stand -->
+  <line x1="1570" y1="688" x2="1570" y2="778" stroke="#252540" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Board icons -->
+  <text x="1476" y="556" text-anchor="middle" font-size="40">🤖</text>
+  <text x="1570" y="556" text-anchor="middle" font-size="40">💡</text>
+  <text x="1664" y="556" text-anchor="middle" font-size="40">✅</text>
+  <!-- Board lines -->
+  <line x1="1424" y1="590" x2="1716" y2="590" stroke="#ffffff18" stroke-width="1.5"/>
+  <line x1="1424" y1="610" x2="1716" y2="610" stroke="#ffffff18" stroke-width="1.5"/>
+  <line x1="1424" y1="630" x2="1716" y2="630" stroke="#ffffff18" stroke-width="1.5"/>
+  <line x1="1424" y1="650" x2="1716" y2="650" stroke="#ffffff18" stroke-width="1.5"/>
+
+  <!-- Teacher at x=1380, y=778, scale=1.4, color=primaryLight -->
+  <circle cx="1380" cy="648" r="17" fill="none" stroke="#5aaaf0" stroke-width="3" stroke-linecap="round"/>
+  <line x1="1380" y1="665" x2="1380" y2="723" stroke="#5aaaf0" stroke-width="3" stroke-linecap="round"/>
+  <!-- arm left -35° -->
+  <line x1="1380" y1="678" x2="1354" y2="650" stroke="#5aaaf0" stroke-width="3" stroke-linecap="round"/>
+  <!-- arm right -110° (pointing at board) -->
+  <line x1="1380" y1="678" x2="1420" y2="644" stroke="#5aaaf0" stroke-width="3" stroke-linecap="round"/>
+  <!-- Pointer line to board -->
+  <line x1="1420" y1="644" x2="1480" y2="580" stroke="#ffffff88" stroke-width="1.8" opacity="0.7"/>
+  <!-- Legs -->
+  <line x1="1380" y1="723" x2="1358" y2="778" stroke="#5aaaf0" stroke-width="3" stroke-linecap="round"/>
+  <line x1="1380" y1="723" x2="1402" y2="778" stroke="#5aaaf0" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Student 1 at x=1760, y=778 (hand raised) -->
+  <!-- Chair -->
+  <rect x="1732" y="723" width="56" height="10" rx="4" fill="#252540" stroke="#ffffff33" stroke-width="1.5"/>
+  <circle cx="1760" cy="672" r="14" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1760" y1="686" x2="1760" y2="728" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1760" y1="696" x2="1738" y2="642" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1760" y1="696" x2="1782" y2="700" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1760" y1="728" x2="1745" y2="778" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1760" y1="728" x2="1775" y2="778" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Checkmark over student 1 -->
+  <circle cx="1760" cy="628" r="18" fill="#3a92e933" stroke="#3a92e9" stroke-width="2"/>
+  <path d="M 1751 628 L 1758 636 L 1770 618" fill="none" stroke="#3a92e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Student 2 at x=1840, y=778 -->
+  <rect x="1812" y="723" width="56" height="10" rx="4" fill="#252540" stroke="#ffffff33" stroke-width="1.5"/>
+  <circle cx="1840" cy="672" r="14" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1840" y1="686" x2="1840" y2="728" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- arms normal -->
+  <line x1="1840" y1="696" x2="1818" y2="710" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1840" y1="696" x2="1862" y2="710" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1840" y1="728" x2="1825" y2="778" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="1840" y1="728" x2="1855" y2="778" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+
+  <!-- Label workshop -->
+  <text x="1570" y="840" text-anchor="middle" fill="#3a92e9" font-size="14" font-family="system-ui" font-weight="600" letter-spacing="2" opacity="0.8">SCHULUNG &amp; WORKSHOP</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- OVERLAY: Gradient + Titel + Play-Button           -->
+  <!-- ══════════════════════════════════════════════════ -->
+
+  <!-- Bottom gradient for text readability -->
+  <rect x="0" y="594" width="1920" height="486" fill="url(#textbg)"/>
+
+  <!-- BSC DIGITAL badge top -->
+  <rect x="40" y="40" width="200" height="48" rx="8" fill="#252540" stroke="#3a92e944" stroke-width="1.5"/>
+  <text x="140" y="71" text-anchor="middle" fill="#3a92e9" font-size="16" font-family="system-ui" font-weight="700" letter-spacing="1.5">BSC DIGITAL</text>
+
+  <!-- Subtitle -->
+  <text x="960" y="940" text-anchor="middle" fill="#3a92e9" font-size="24"
+        font-family="'Montserrat', 'Segoe UI', system-ui" font-weight="600" letter-spacing="4">
+    KI-BERATUNG · AUTOMATISIERUNG · SCHULUNG
+  </text>
+
+  <!-- Main title -->
+  <text x="960" y="1010" text-anchor="middle" fill="#ffffff" font-size="52"
+        font-family="'Montserrat', 'Segoe UI', system-ui" font-weight="700">
+    KI, die wirklich funktioniert – in 37 Sekunden erklärt
+  </text>
+
+  <!-- Play button glow -->
+  <circle cx="960" cy="510" r="90" fill="url(#playGlow)"/>
+
+  <!-- Play button outer ring -->
+  <circle cx="960" cy="510" r="52" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.45)" stroke-width="2.5"/>
+  <!-- Play button inner -->
+  <circle cx="960" cy="510" r="40" fill="rgba(255,255,255,0.88)"/>
+  <!-- Play triangle -->
+  <polygon points="947,492 947,528 983,510" fill="#1a1a2e"/>
+
+  <!-- Divider lines -->
+  <line x1="640" y1="778" x2="640" y2="820" stroke="#252540" stroke-width="2"/>
+  <line x1="1280" y1="778" x2="1280" y2="820" stroke="#252540" stroke-width="2"/>
+
+</svg>
+</body>
+</html>
