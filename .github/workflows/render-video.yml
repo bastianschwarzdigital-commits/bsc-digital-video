@@ -14,8 +14,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '22'
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
       - name: Install dependencies
         run: npm install
@@ -23,8 +27,17 @@ jobs:
       - name: Generate background music
         run: node generate-music.js
 
+      - name: Create output folder
+        run: mkdir -p out
+
       - name: Render video
-        run: npx remotion render BSCVideo out/bsc-services.mp4 --codec=h264
+        run: |
+          npx remotion render BSCVideo out/bsc-services.mp4 \
+            --codec=h264 \
+            --browser-executable=/usr/bin/google-chrome-stable \
+            --gl=swiftshader \
+            --concurrency=2 \
+            --log=verbose
 
       - name: Upload MP4
         uses: actions/upload-artifact@v4
