@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Generate background music
-        run: node generate-music.js
+        run: mkdir -p public && node generate-music.js
 
       - name: Create output folder
         run: mkdir -p out
